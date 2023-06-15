@@ -1,10 +1,10 @@
 import './App.css';
-import TestPage from './pages/TestPage';
+import GuessPage from './pages/GuessPage';
 
 const App = () => {
   return (
     <div className="App">
-      <TestPage></TestPage>
+      <GuessPage></GuessPage>
     </div>
   );
 }
