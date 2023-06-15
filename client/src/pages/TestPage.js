@@ -1,8 +1,9 @@
 import React from 'react'
+import Map from '../components/Map'
 
 const TestPage = () => {
   return (
-    <div>TestPage</div>
+    <Map></Map>
   )
 }
 
