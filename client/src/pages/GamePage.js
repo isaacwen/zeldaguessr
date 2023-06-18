@@ -18,9 +18,9 @@ const GamePage = ({gameState, gameData, roundNumber, score, updateNextRound, add
     // console.log(`expected xpct: ${gameData[roundNumber - 1]["xPct"]}, expected ypct: ${gameData[roundNumber - 1]["yPct"]}, actual xPct: ${marker.x / marker.width * 100}, actual yPct: ${marker.y / marker.height * 100}`)
     // console.log(scoreCalc)
     // console.log(gameData[roundNumber - 1])
-    updateNextRound(curScore)
+    updateNextRound(scoreCalc)
     setGuessMade(true)
-  }, [marker, gameData, roundNumber, curScore, setCurScore, updateNextRound, setGuessMade])
+  }, [marker, gameData, roundNumber, setCurScore, updateNextRound, setGuessMade])
 
   const handleNextRound = useCallback(() => {
     addMarker({...marker, score: curScore})

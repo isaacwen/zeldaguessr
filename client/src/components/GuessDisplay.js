@@ -22,7 +22,7 @@ const GuessDisplay = ({marker, curScore, totalScore, gameData, roundNumber, hand
         <div className = "scoreUnderline">Round Score</div>
         <div>{curScore}</div>
         <div className = "scoreUnderline">Total Score</div>
-        <div>{totalScore + curScore}</div>
+        <div>{totalScore}</div>
       </div>
       <div>
         <button className = "baseBtn standardBtn" onClick = {handleNextRound}>
