@@ -3,8 +3,8 @@ import { TransformWrapper, TransformComponent } from 'react-zoom-pan-pinch'
 import { MapInteractionCSS } from 'react-map-interaction';
 import Marker from './Marker';
 
-const Map = () => {
-  const [marker, setMarker] = useState(null);
+const Map = ({marker, setMarker, handleGuess}) => {
+  
 
   const handleClick = (e) => {
     var rect = e.target.getBoundingClientRect();
@@ -33,11 +33,12 @@ const Map = () => {
           alt = "map"
           onClick = {handleClick}
         />
-        {marker !== null && <Marker className = {"absolute w-4 h-4 z-10 opacity-0 group-hover:opacity-100 delay-100 pb-5 mr-5"} style = {marker}></Marker>}
+        {marker !== null && <Marker className = {"absolute w-4 h-4 z-10 opacity-0 group-hover:opacity-100 delay-100 pb-5 mr-5"} marker = {marker} iconType = {"GuessPin"}></Marker>}
         <div className = "absolute -bottom-2.5 right-0 left-1 w-full pointer-events-none">
           <button 
-            className = {`group-hover:pointer-events-auto z-20 text-lg py-2 px-6 opacity-0 disabled:cursor-not-allowed group-hover:disabled:opacity-25 group-hover:enabled:opacity-100  rounded duration-0 delay-100 bg-blue-500 hover:enabled:bg-blue-700 text-white pr-5 w-64`}
+            className = {`group-hover:pointer-events-auto z-20 text-lg py-2 px-6 opacity-0 disabled:cursor-not-allowed group-hover:disabled:opacity-25 group-hover:enabled:opacity-100 duration-0 delay-100 hover:enabled:bg-blue-700 pr-5 w-64 baseBtn`}
             disabled = {marker === null}
+            onClick = {handleGuess}
           >
             {marker === null ? "Make a Guess" : "Submit Guess"}
           </button>
