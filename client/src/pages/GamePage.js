@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useEffect } from 'react'
+import React, { useState, useCallback } from 'react'
 import GameScore from '../components/GameScore'
 import LocationPicture from '../components/LocationPicture'
 import Map from '../components/Map'
@@ -15,9 +15,6 @@ const GamePage = ({gameState, gameData, roundNumber, score, updateNextRound, add
   const handleGuess = useCallback(() => {
     const scoreCalc = calcScore(calcPct(marker.x, marker.width, 0), calcPct(marker.y, marker.height, 0), gameData[roundNumber - 1]["xPct"], gameData[roundNumber - 1]["yPct"])
     setCurScore(scoreCalc)
-    // console.log(`expected xpct: ${gameData[roundNumber - 1]["xPct"]}, expected ypct: ${gameData[roundNumber - 1]["yPct"]}, actual xPct: ${marker.x / marker.width * 100}, actual yPct: ${marker.y / marker.height * 100}`)
-    // console.log(scoreCalc)
-    // console.log(gameData[roundNumber - 1])
     updateNextRound(scoreCalc)
     setGuessMade(true)
   }, [marker, gameData, roundNumber, setCurScore, updateNextRound, setGuessMade])
@@ -26,7 +23,6 @@ const GamePage = ({gameState, gameData, roundNumber, score, updateNextRound, add
     addMarker({...marker, score: curScore})
     setMarker(null)
     setGuessMade(false)
-    console.log(gameData)
     if (roundNumber > 5) {
       navigate("/results")
     }

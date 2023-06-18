@@ -1,7 +1,6 @@
 import React from 'react'
 import { MdLocationPin } from 'react-icons/md'
 import { FaMapPin } from 'react-icons/fa'
-import { BsFill1CircleFill, BsFill2CircleFill, BsFill3CircleFill, BsFill4CircleFill, BsFill5CircleFill } from 'react-icons/bs'
 import { TbCircleNumber1, TbCircleNumber2, TbCircleNumber3, TbCircleNumber4, TbCircleNumber5 } from 'react-icons/tb'
 import { calcPct } from '../utils/algs'
 

@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 import './App.css';
 import GamePage from './pages/GamePage';
 import useEngine from './hooks/useEngine';
@@ -10,10 +10,6 @@ const App = () => {
   const navigate = useNavigate()
   const [markers, setMarkers] = useState([]);
   const { gameState, gameData, roundNumber, score, resetGame, startGame, updateNextRound } = useEngine()
-
-  // useEffect(() => {
-  //   resetGame()
-  // }, [])
 
   const handleNewGame = useCallback(() => {
     resetGame()
@@ -27,15 +23,19 @@ const App = () => {
     setMarkers([])
   }, [resetGame, setMarkers])
 
-  // const handleNewGame = () => {
-  //   resetGame()
-  //   startGame()
-  //   navigate("/game")
-  // }
-
   const addMarker = useCallback((marker) => {
     setMarkers([...markers, marker])
   }, [setMarkers, markers])
+
+  const checkBackButton = () => {
+    navHome()
+    navigate("/")
+  }
+
+  useEffect(() => {
+    window.addEventListener("popstate", checkBackButton)
+    return () => window.removeEventListener("popstate", checkBackButton)
+  }, [])
 
   return (
     <div className="App">

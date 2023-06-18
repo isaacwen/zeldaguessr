@@ -1,5 +1,6 @@
 import React, { useRef, useState, useEffect } from 'react'
 import Marker from './Marker'
+import map from '../resources/base.png'
 
 const GuessDisplay = ({marker, curScore, totalScore, gameData, roundNumber, handleNextRound}) => {
   const [mapDimensions, setMapDimensions] = useState([]);
@@ -13,7 +14,7 @@ const GuessDisplay = ({marker, curScore, totalScore, gameData, roundNumber, hand
     <div className = "grid place-content-center w-screen h-screen gap-10">
       <div className = "w-172 relative" ref = {ref}>
         <div>
-          <img src = {"base.png"} alt = "map"></img>
+          <img src = {map} alt = "map"></img>
           <Marker className = {"absolute w-fit h-fit"} marker = {marker} iconType = {"GuessPin"}></Marker>
           <Marker className = {"absolute w-fit h-fit"} position = {{...gameData[roundNumber - 2], mapWidth: mapDimensions[0], mapHeight: mapDimensions[1]}} iconType = {"GoalPin"}></Marker>  
         </div>
