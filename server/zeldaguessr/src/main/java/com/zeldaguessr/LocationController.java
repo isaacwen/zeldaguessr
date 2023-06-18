@@ -13,6 +13,9 @@ public class LocationController {
 
     @PostMapping("/add")
     public @ResponseBody String addNewLocation(@RequestBody Location loc) {
+        if (locationRepository.findById(loc.getId()).isPresent()) {
+            return "Already exists";
+        }
         locationRepository.save(loc);
         return "Saved";
     }
@@ -22,6 +25,7 @@ public class LocationController {
         return locationRepository.findAll();
     }
 
+    @CrossOrigin
     @GetMapping("/random/{numRandom}")
     public @ResponseBody Iterable<Location> getRandomLocations(@PathVariable Integer numRandom) {
         if (numRandom <= 0) {
