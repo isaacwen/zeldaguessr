@@ -4,8 +4,10 @@ import LocationPicture from '../components/LocationPicture'
 import Map from '../components/Map'
 import { calcScore, calcPct } from '../utils/algs'
 import GuessDisplay from '../components/GuessDisplay'
+import { useNavigate } from 'react-router-dom'
 
-const GamePage = ({gameState, gameData, roundNumber, score, updateNextRound, setMarkers}) => {
+const GamePage = ({gameState, gameData, roundNumber, score, updateNextRound, addMarker}) => {
+  const navigate = useNavigate()
   const [marker, setMarker] = useState(null);
   const [curScore, setCurScore] = useState(0);
   const [guessMade, setGuessMade] = useState(false);
@@ -15,16 +17,20 @@ const GamePage = ({gameState, gameData, roundNumber, score, updateNextRound, set
     setCurScore(scoreCalc)
     // console.log(`expected xpct: ${gameData[roundNumber - 1]["xPct"]}, expected ypct: ${gameData[roundNumber - 1]["yPct"]}, actual xPct: ${marker.x / marker.width * 100}, actual yPct: ${marker.y / marker.height * 100}`)
     // console.log(scoreCalc)
-    console.log(gameData[roundNumber - 1])
+    // console.log(gameData[roundNumber - 1])
     updateNextRound(curScore)
     setGuessMade(true)
-  }, [marker, setMarker, gameData])
+  }, [marker, gameData, roundNumber, curScore, setCurScore, updateNextRound, setGuessMade])
 
   const handleNextRound = useCallback(() => {
-    
+    addMarker({...marker, score: curScore})
     setMarker(null)
     setGuessMade(false)
-  }, [setGuessMade])
+    console.log(gameData)
+    if (roundNumber > 5) {
+      navigate("/results")
+    }
+  }, [setGuessMade, roundNumber, addMarker, setMarker, setCurScore])
 
   var GuessView = (
     <div>
@@ -32,7 +38,7 @@ const GamePage = ({gameState, gameData, roundNumber, score, updateNextRound, set
         roundNumber = {roundNumber}
         score = {score}
       ></GameScore>
-      {gameData !== null ? (<LocationPicture
+      {gameData !== null && roundNumber <= 5 ? (<LocationPicture
         imageName = {gameData[roundNumber - 1]["imageFileName"]}
       ></LocationPicture>) : "Loading...."}
       <Map

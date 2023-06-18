@@ -1,13 +1,14 @@
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
 import './App.css';
 import GamePage from './pages/GamePage';
 import useEngine from './hooks/useEngine';
 import { Routes, Route, useNavigate, Navigate } from 'react-router-dom';
 import HomePage from './pages/HomePage';
+import ResultsPage from './pages/ResultsPage';
 
 const App = () => {
   const navigate = useNavigate()
-  const [markers, setMarkers] = useState(null);
+  const [markers, setMarkers] = useState([]);
   const { gameState, gameData, roundNumber, score, resetGame, startGame, updateNextRound } = useEngine()
 
   // useEffect(() => {
@@ -19,6 +20,10 @@ const App = () => {
     startGame()
     navigate("/game")
   }
+
+  const addMarker = useCallback((marker) => {
+    setMarkers([...markers, marker])
+  }, [setMarkers, markers])
 
   return (
     <div className="App">
@@ -35,8 +40,15 @@ const App = () => {
             roundNumber = {roundNumber}
             score = {score}
             updateNextRound = {updateNextRound}
-            setMarkers = {setMarkers}
+            addMarker = {addMarker}
           ></GamePage>
+        }></Route>
+        <Route path = "/results" element = {
+          <ResultsPage
+            markers = {markers}
+            gameData = {gameData}
+            totalScore = {score}
+          ></ResultsPage>
         }></Route>
       </Routes>
       

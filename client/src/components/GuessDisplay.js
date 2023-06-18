@@ -15,7 +15,7 @@ const GuessDisplay = ({marker, curScore, totalScore, gameData, roundNumber, hand
         <div>
           <img src = {"base.png"} alt = "map"></img>
           <Marker className = {"absolute w-fit h-fit"} marker = {marker} iconType = {"GuessPin"}></Marker>
-          <Marker className = {"absolute w-fit h-fit"} position = {{...gameData[roundNumber - 2], mapWidth: mapDimensions[0], mapHeight: mapDimensions[1]}} iconType = {"GoalPin"}></Marker>
+          <Marker className = {"absolute w-fit h-fit"} position = {{...gameData[roundNumber - 2], mapWidth: mapDimensions[0], mapHeight: mapDimensions[1]}} iconType = {"GoalPin"}></Marker>  
         </div>
       </div>
       <div className = "grid grid-rows-2 grid-flow-col scoreText">
@@ -25,7 +25,9 @@ const GuessDisplay = ({marker, curScore, totalScore, gameData, roundNumber, hand
         <div>{totalScore + curScore}</div>
       </div>
       <div>
-        <button className = "baseBtn standardBtn" onClick = {handleNextRound}>Next Round</button>
+        <button className = "baseBtn standardBtn" onClick = {handleNextRound}>
+          {roundNumber <= 5 ? "Next Round" : "Final Results"}
+        </button>
       </div>
     </div>
   )

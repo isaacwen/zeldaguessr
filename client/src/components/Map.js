@@ -4,14 +4,12 @@ import { MapInteractionCSS } from 'react-map-interaction';
 import Marker from './Marker';
 
 const Map = ({marker, setMarker, handleGuess}) => {
-  
-
   const handleClick = (e) => {
     var rect = e.target.getBoundingClientRect();
     var x = e.clientX - rect.left;
     var y = e.clientY - rect.top;
     setMarker({x: x, y: y, width: (rect.right - rect.left), height: (rect.bottom - rect.top)})
-    console.log(marker)
+    // console.log(marker)
   }
 
   return (

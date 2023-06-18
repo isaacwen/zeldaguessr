@@ -16,12 +16,8 @@ const useEngine = () => {
   }, [setGameData, setRoundNumber, setScore])
 
   const updateNextRound = useCallback((prevRoundPoints) => {
-    if (roundNumber >= 5) {
-      setGameState("Final Results")
-      return
-    }
-    setRoundNumber(roundNumber + 1)
     setScore(score + prevRoundPoints)
+    setRoundNumber(roundNumber + 1)
   }, [roundNumber, gameData, setRoundNumber, setScore, score])
 
   const startGame = useCallback(() => {
