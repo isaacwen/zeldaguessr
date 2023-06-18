@@ -1,9 +1,7 @@
 import React, { useRef, useEffect, useState } from 'react'
 import Marker from '../components/Marker';
-import { useNavigate } from 'react-router-dom';
 
-const ResultsPage = ({markers, gameData, totalScore, handleNewGame}) => {
-  const navigate = useNavigate();
+const ResultsPage = ({markers, gameData, totalScore, handleNewGame, navHome}) => {
   const [mapDimensions, setMapDimensions] = useState([]);
   const [showGuesses, setShowGuesses] = useState(true);
   const [showAnswers, setShowAnswers] = useState(true);
@@ -44,7 +42,7 @@ const ResultsPage = ({markers, gameData, totalScore, handleNewGame}) => {
         <button className = "baseBtn standardBtn mr-2" onClick = {handleNewGame}>
           New Game
         </button>
-        <button className = "baseBtn standardBtn" onClick = {() => navigate("/")}>
+        <button className = "baseBtn standardBtn" onClick = {navHome}>
           Home
         </button>
       </div>

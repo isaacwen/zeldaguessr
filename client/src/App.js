@@ -22,6 +22,11 @@ const App = () => {
     navigate("/game")
   }, [resetGame, startGame, setMarkers, navigate])
 
+  const navHome = useCallback(() => {
+    resetGame()
+    setMarkers([])
+  }, [resetGame, setMarkers])
+
   // const handleNewGame = () => {
   //   resetGame()
   //   startGame()
@@ -40,7 +45,7 @@ const App = () => {
             handleNewGame = {handleNewGame}
           ></HomePage>
         }></Route>
-        <Route path = "/game" element = {
+        <Route path = "/game" element = {gameState !== "Running" ? <Navigate to="/"/> :
           <GamePage
             gameState = {gameState}
             gameData = {gameData}
@@ -50,12 +55,13 @@ const App = () => {
             addMarker = {addMarker}
           ></GamePage>
         }></Route>
-        <Route path = "/results" element = {
+        <Route path = "/results" element = {gameState !== "Running" ? <Navigate to="/"/> :
           <ResultsPage
             markers = {markers}
             gameData = {gameData}
             totalScore = {score}
             handleNewGame = {handleNewGame}
+            navHome = {navHome}
           ></ResultsPage>
         }></Route>
       </Routes>
