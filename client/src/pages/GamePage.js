@@ -26,7 +26,7 @@ const GamePage = ({gameState, gameData, roundNumber, score, updateNextRound, add
     if (roundNumber > 5) {
       navigate("/results")
     }
-  }, [setGuessMade, roundNumber, addMarker, setMarker, setCurScore])
+  }, [setGuessMade, roundNumber, addMarker, marker, setMarker, curScore, navigate])
 
   var GuessView = (
     <div>

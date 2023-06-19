@@ -50,7 +50,11 @@ const Marker = ({className, marker, position, iconType, resultNum}) => {
             return <TbCircleNumber4 color = {color} size = {size} key = {iconType + color} fill = {fill}></TbCircleNumber4>
           case 5:
             return <TbCircleNumber5 color = {color} size = {size} key = {iconType + color} fill = {fill}></TbCircleNumber5>
+          default:
+            return <></>
         }
+      default:
+        return <></>
     }
   }
 

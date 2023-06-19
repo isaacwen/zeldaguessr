@@ -27,15 +27,15 @@ const App = () => {
     setMarkers([...markers, marker])
   }, [setMarkers, markers])
 
-  const checkBackButton = () => {
+  const checkBackButton = useCallback(() => {
     navHome()
     navigate("/")
-  }
+  }, [navHome, navigate])
 
   useEffect(() => {
     window.addEventListener("popstate", checkBackButton)
     return () => window.removeEventListener("popstate", checkBackButton)
-  }, [])
+  }, [checkBackButton])
 
   return (
     <div className="App">

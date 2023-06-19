@@ -13,6 +13,8 @@ export const getGameData = (setGameData) => {
     })
 }
 
-export default {
+const exportedObj = {
   getGameData
 }
+
+export default exportedObj

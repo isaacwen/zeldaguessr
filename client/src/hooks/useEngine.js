@@ -18,12 +18,12 @@ const useEngine = () => {
   const updateNextRound = useCallback((prevRoundPoints) => {
     setScore(score + prevRoundPoints)
     setRoundNumber(roundNumber + 1)
-  }, [roundNumber, gameData, setRoundNumber, setScore, score])
+  }, [roundNumber, setRoundNumber, setScore, score])
 
   const startGame = useCallback(() => {
     setGameState("Running");
     setRoundNumber(1);
-  }, [setGameState, updateNextRound])
+  }, [setGameState, setRoundNumber])
 
   return { gameState, gameData, roundNumber, score, resetGame, startGame, updateNextRound }
 }
