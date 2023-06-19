@@ -1,6 +1,7 @@
 import React, { useRef, useEffect, useState } from 'react'
 import Marker from '../components/Marker';
 import map from '../resources/base.png'
+import { pageWrapper } from '../utils/wrapper';
 
 const ResultsPage = ({markers, gameData, totalScore, handleNewGame, navHome}) => {
   const [mapDimensions, setMapDimensions] = useState([]);
@@ -12,7 +13,7 @@ const ResultsPage = ({markers, gameData, totalScore, handleNewGame, navHome}) =>
     setMapDimensions([ref.current.clientWidth, ref.current.clientHeight])
   }, [])
 
-  return (
+  return pageWrapper(
     <div className = "grid place-content-center w-screen h-screen gap-4">
       <div className = "mapSize relative group" ref = {ref}>
         <div>

@@ -1,6 +1,7 @@
 import React, { useRef, useState, useEffect } from 'react'
 import Marker from './Marker'
 import map from '../resources/base.png'
+import { pageWrapper } from '../utils/wrapper';
 
 const GuessDisplay = ({marker, curScore, totalScore, gameData, roundNumber, handleNextRound}) => {
   const [mapDimensions, setMapDimensions] = useState([]);
@@ -10,7 +11,7 @@ const GuessDisplay = ({marker, curScore, totalScore, gameData, roundNumber, hand
     setMapDimensions([ref.current.clientWidth, ref.current.clientHeight])
   }, [])
 
-  return (
+  return pageWrapper(
     <div className = "grid place-content-center w-screen h-screen gap-7">
       <div className = "mapSize relative" ref = {ref}>
         <div>

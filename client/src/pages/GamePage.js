@@ -5,6 +5,7 @@ import Map from '../components/Map'
 import { calcScore, calcPct } from '../utils/algs'
 import GuessDisplay from '../components/GuessDisplay'
 import { useNavigate } from 'react-router-dom'
+import { pageWrapper } from '../utils/wrapper'
 
 const GamePage = ({gameState, gameData, roundNumber, score, updateNextRound, addMarker}) => {
   const navigate = useNavigate()
@@ -28,7 +29,7 @@ const GamePage = ({gameState, gameData, roundNumber, score, updateNextRound, add
     }
   }, [setGuessMade, roundNumber, addMarker, marker, setMarker, curScore, navigate])
 
-  var GuessView = (
+  var GuessView = pageWrapper(
     <div>
       <GameScore
         roundNumber = {roundNumber}
@@ -56,7 +57,7 @@ const GamePage = ({gameState, gameData, roundNumber, score, updateNextRound, add
     ></GuessDisplay>
   )
 
-  var LoadingView = (
+  var LoadingView = pageWrapper(
     <div>Loading</div>
   )
 
@@ -72,7 +73,7 @@ const GamePage = ({gameState, gameData, roundNumber, score, updateNextRound, add
     }
   }
 
-  return (
+  return pageWrapper(
     <>
       {renderView()}
     </>
