@@ -22,8 +22,8 @@ const Marker = ({className, marker, position, iconType, resultNum}) => {
     style["top"] = calcPct(marker.y, marker.height, ICON_OFFSETS[iconType][0]).toString() + "%"
     style["left"] = calcPct(marker.x, marker.width, ICON_OFFSETS[iconType][1]).toString() + "%"
   } else if (position !== undefined) {
-    style["top"] = (position["yPct"] + ICON_OFFSETS[iconType][0] / position["mapHeight"] * 100).toString() + "%"
-    style["left"] = (position["xPct"] + ICON_OFFSETS[iconType][1] / position["mapWidth"] * 100).toString() + "%"
+    style["top"] = (position["y_pct"] + ICON_OFFSETS[iconType][0] / position["mapHeight"] * 100).toString() + "%"
+    style["left"] = (position["x_pct"] + ICON_OFFSETS[iconType][1] / position["mapWidth"] * 100).toString() + "%"
   } else {
     console.log("Either marker or position needs to be non-null")
   }

@@ -13,7 +13,7 @@ const GamePage = ({gameState, gameData, roundNumber, score, updateNextRound, add
   const [guessMade, setGuessMade] = useState(false);
 
   const handleGuess = useCallback(() => {
-    const scoreCalc = calcScore(calcPct(marker.x, marker.width, 0), calcPct(marker.y, marker.height, 0), gameData[roundNumber - 1]["xPct"], gameData[roundNumber - 1]["yPct"])
+    const scoreCalc = calcScore(calcPct(marker.x, marker.width, 0), calcPct(marker.y, marker.height, 0), gameData[roundNumber - 1]["x_pct"], gameData[roundNumber - 1]["y_pct"])
     setCurScore(scoreCalc)
     updateNextRound(scoreCalc)
     setGuessMade(true)
@@ -35,7 +35,7 @@ const GamePage = ({gameState, gameData, roundNumber, score, updateNextRound, add
         score = {score}
       ></GameScore>
       {gameData !== null && roundNumber <= 5 ? (<LocationPicture
-        imageName = {gameData[roundNumber - 1]["imageFileName"]}
+        imageName = {gameData[roundNumber - 1]["image_file_name"]}
       ></LocationPicture>) : "Loading...."}
       <Map
         marker = {marker}

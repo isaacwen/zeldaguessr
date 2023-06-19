@@ -5,7 +5,7 @@ const api = axios.create({
 })
 
 export const getGameData = (setGameData) => {
-  api.get("/location/random/5")
+  api.get("/api/random")
     .then((response) => {
       setGameData(response.data);
     }).catch((_) => {
