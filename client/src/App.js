@@ -35,7 +35,8 @@ const App = () => {
   useEffect(() => {
     window.addEventListener("popstate", checkBackButton)
     return () => window.removeEventListener("popstate", checkBackButton)
-  }, [checkBackButton])
+  // eslint-disable-next-line
+  }, [])
 
   return (
     <div className="App">

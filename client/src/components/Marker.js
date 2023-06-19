@@ -4,7 +4,7 @@ import { FaMapPin } from 'react-icons/fa'
 import { TbCircleNumber1, TbCircleNumber2, TbCircleNumber3, TbCircleNumber4, TbCircleNumber5 } from 'react-icons/tb'
 import { calcPct } from '../utils/algs'
 
-const ICON_SIZE_PX = 32
+const ICON_SIZE_PX = 24
 
 // Offset values are [TOP_OFFSET, LEFT_OFFSET]
 const ICON_OFFSETS = {

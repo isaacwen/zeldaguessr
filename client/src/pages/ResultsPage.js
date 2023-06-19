@@ -13,15 +13,15 @@ const ResultsPage = ({markers, gameData, totalScore, handleNewGame, navHome}) =>
   }, [])
 
   return (
-    <div className = "grid place-content-center w-screen h-screen gap-5">
-      <div className = "w-172 relative group" ref = {ref}>
+    <div className = "grid place-content-center w-screen h-screen gap-4">
+      <div className = "mapSize relative group" ref = {ref}>
         <div>
           <img src = {map} alt = "map"></img>
           {markers.map((marker, i) => {return <Marker className = {`absolute w-fit h-fit ${!showGuesses && "opacity-0"}`} marker = {marker} iconType = {"ResultGuessCircle"} resultNum = {i + 1}></Marker>})}
           {gameData.map((roundData, i) => {return <Marker className = {`absolute w-fit h-fit ${!showAnswers && "opacity-0"}`} position = {{...roundData, mapWidth: mapDimensions[0], mapHeight: mapDimensions[1]}} iconType = {"ResultGoalCircle"} resultNum = {i + 1}></Marker>})}
         </div>
       </div>
-      <div className = "grid grid-cols-2 grid-flow-row scoreText h-24 overflow-auto">
+      <div className = "grid grid-cols-2 grid-flow-row scoreText h-20 overflow-auto">
         <div className = "scoreUnderline sticky top-0 bg-zinc-800">Round #</div>
         <div className = "scoreUnderline sticky top-0 bg-zinc-800">Score</div>
         {markers.map((marker, i) => {return <><div key = {`roundNum${i}`}>{i + 1}</div><div key = {`score${i}`}>{marker["score"]}</div></>})}

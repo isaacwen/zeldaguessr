@@ -11,8 +11,8 @@ const GuessDisplay = ({marker, curScore, totalScore, gameData, roundNumber, hand
   }, [])
 
   return (
-    <div className = "grid place-content-center w-screen h-screen gap-10">
-      <div className = "w-172 relative" ref = {ref}>
+    <div className = "grid place-content-center w-screen h-screen gap-7">
+      <div className = "mapSize relative" ref = {ref}>
         <div>
           <img src = {map} alt = "map"></img>
           <Marker className = {"absolute w-fit h-fit"} marker = {marker} iconType = {"GuessPin"}></Marker>
