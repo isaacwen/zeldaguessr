@@ -1,8 +1,12 @@
 package com.zeldaguessr;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
+
+import java.util.Collection;
 
 @Controller
 @RequestMapping(path = "/location")
@@ -14,15 +18,20 @@ public class LocationController {
     @PostMapping("/add")
     public @ResponseBody String addNewLocation(@RequestBody Location loc) {
         if (locationRepository.findById(loc.getId()).isPresent()) {
-            return "Already exists";
+            throw new ResponseStatusException(HttpStatus.CONFLICT, "location " + loc.getId() + " already exists in db");
         }
         locationRepository.save(loc);
         return "Saved";
     }
 
     @GetMapping("/all")
-    public @ResponseBody Iterable<Location> getAllLocations() {
-        return locationRepository.findAll();
+    public @ResponseBody Integer getAllLocations() {
+        Iterable<Location> locations = locationRepository.findAll();
+        if (locations instanceof Collection<?>) {
+            return ((Collection<?>) locations).size();
+        } else {
+            return -1;
+        }
     }
 
     @CrossOrigin
